@@ -1,1 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Latchon Satiraprapakul — Quantitative Research</title>
+<style>
+  :root{
+    --paper:#EAE6DC;
+    --paper-dim:#DFDACD;
+    --ink:#171C24;
+    --ink-soft:#4B5261;
+    --rule:#C8C1AF;
+    --market-green:#1F6B45;
+    --market-red:#A6392B;
+    --brass:#93732F;
+    --white:#FBFAF6;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'IBM Plex Sans', Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Newsreader', 'Georgia', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .mono{ font-family:'IBM Plex Mono','Courier New',monospace; }
+  a{ color:inherit; }
 
+  .wrap{ max-width:920px; margin:0 auto; padding:0 28px; }
+  header.masthead{ border-bottom:1px solid var(--rule); padding:18px 0; }
+  .masthead .wrap{ display:flex; justify-content:space-between; align-items:center; }
+  .masthead .brand{ font-family:'IBM Plex Mono',monospace; font-size:13px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-soft); }
+  nav a{ margin-left:22px; font-size:13px; text-decoration:none; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; letter-spacing:.03em; }
+  nav a:hover{ color:var(--ink); }
+
+  .hero{ padding:70px 0 50px; border-bottom:1px solid var(--rule); }
+  .hero .eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--brass); margin-bottom:14px; }
+  .hero h1{ font-size:50px; line-height:1.05; margin-bottom:6px; }
+  .hero .pronoun{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); margin-bottom:18px; }
+  .hero p.tagline{ font-size:18px; color:var(--ink-soft); max-width:600px; line-height:1.55; margin-bottom:34px; }
+
+  .ticker{ display:flex; gap:0; border:1px solid var(--rule); background:var(--white); flex-wrap:wrap; }
+  .ticker .cell{ flex:1 1 140px; padding:16px 18px; border-right:1px solid var(--rule); }
+  .ticker .cell:last-child{ border-right:none; }
+  .ticker .label{ font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--ink-soft); margin-bottom:6px; }
+  .ticker .value{ font-family:'IBM Plex Mono',monospace; font-size:22px; color:var(--market-green); }
+
+  section{ padding:56px 0; border-bottom:1px solid var(--rule); }
+  section:last-of-type{ border-bottom:none; }
+  .section-head{ display:flex; align-items:baseline; gap:14px; margin-bottom:30px; }
+  .section-head .tag{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--brass); letter-spacing:.1em; }
+  .section-head h2{ font-size:26px; }
+
+  .about p{ font-size:16px; line-height:1.7; color:var(--ink); max-width:680px; }
+  .about p + p{ margin-top:14px; }
+
+  .entry{ padding:22px 0; border-top:1px solid var(--rule); display:grid; grid-template-columns:150px 1fr; gap:24px; }
+  .entry:first-of-type{ border-top:none; }
+  .entry .date{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--ink-soft); padding-top:3px; }
+  .entry h3{ font-size:18px; margin-bottom:6px; }
+  .entry .org{ font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--brass); text-transform:uppercase; letter-spacing:.05em; margin-bottom:8px; }
+  .entry ul{ margin:0; padding-left:18px; }
+  .entry li{ font-size:15px; line-height:1.6; color:var(--ink-soft); margin-bottom:5px; }
+  .entry p{ font-size:15px; line-height:1.6; color:var(--ink-soft); margin:0; }
+
+  .grid-projects{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); }
+  .proj{ background:var(--white); padding:24px; }
+  .proj .stat{ font-family:'IBM Plex Mono',monospace; font-size:15px; text-transform:uppercase; letter-spacing:.04em; color:var(--market-green); margin-bottom:8px; }
+  .proj h3{ font-size:16px; margin-bottom:8px; }
+  .proj p{ font-size:14px; line-height:1.6; color:var(--ink-soft); margin:0; }
+
+  .cert-row{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); }
+  .cert{ background:var(--white); padding:20px; }
+  .cert .cdate{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--brass); text-transform:uppercase; letter-spacing:.06em; margin-bottom:6px; }
+  .cert h3{ font-size:15px; margin-bottom:6px; }
+  .cert p{ font-size:13px; color:var(--ink-soft); line-height:1.5; margin:0; }
+
+  .skills-row{ display:flex; flex-wrap:wrap; gap:10px; }
+  .pill{ border:1px solid var(--rule); background:var(--white); padding:7px 14px; font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:.02em; }
+
+  footer{ padding:40px 0 60px; }
+  footer .wrap{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; }
+  footer .contact-links{ display:flex; gap:20px; font-family:'IBM Plex Mono',monospace; font-size:13px; }
+  footer .contact-links a{ text-decoration:none; border-bottom:1px solid var(--brass); padding-bottom:2px; }
+  footer .fine{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); }
+
+  @media (max-width:640px){
+    .hero h1{ font-size:34px; }
+    .entry{ grid-template-columns:1fr; gap:6px; }
+    .grid-projects{ grid-template-columns:1fr; }
+    .cert-row{ grid-template-columns:1fr; }
+    nav a{ margin-left:14px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="brand">L. Satiraprapakul</div>
+    <nav>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Quantitative Finance &amp; Investment Research</div>
+    <h1>Latchon (Kiddee) Satiraprapakul</h1>
+    <div class="pronoun mono">He/Him &middot; Lincoln, Nebraska</div>
+    <p class="tagline">Economics &amp; Mathematics student at the University of Nebraska-Lincoln with hands-on experience in capital markets, financial modeling, and systematic research. Actively seeking internship opportunities in quantitative trading, investment banking, and asset management.</p>
+
+    <div class="ticker">
+      <div class="cell">
+        <div class="label">GPA (Recent Sem.)</div>
+        <div class="value">3.55</div>
+      </div>
+      <div class="cell">
+        <div class="label">Major</div>
+        <div class="value">Econ + Math</div>
+      </div>
+      <div class="cell">
+        <div class="label">Graduation</div>
+        <div class="value">May 2028</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">01</span><h2>About</h2></div>
+    <p>I'm an Economics major with a Mathematics minor at UNL, with a strong interest in how mathematics underpins financial modeling and systematic research, from probability and statistics to regression analysis, developed through coursework, stock pitch competitions, and quantitative finance initiatives. I use Python to work with time series data, run quantitative analysis, and support investment decision-making, including ongoing systematic alpha research as a Research Consultant on the WorldQuant BRAIN platform. Mathematics is the foundation for how I approach markets, risk, and research.</p>
+    <p>I've completed Bloomberg Market Concepts (BMC) and am currently preparing for CFA Level I to build further on my foundation in valuation, portfolio management, and capital allocation. I bring strong communication and analytical discipline from my role as a Financial Well-Being Ambassador, where I work with students in fast-paced, client-facing conversations.</p>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">02</span><h2>Research &amp; Competitions</h2></div>
+    <div class="grid-projects">
+      <div class="proj">
+        <div class="stat">Big Red Investment Club</div>
+        <h3>TransMedics Group (TMDX) Stock Pitch</h3>
+        <p>Built a full investment thesis on TransMedics' organ transplant logistics platform, including a DCF, relative valuation framework, competitive moat analysis, and sensitivity scenarios around kidney platform expansion and international growth. Presented alongside teammates Nolan Chaloner and Tanner Languis.</p>
+      </div>
+      <div class="proj">
+        <div class="stat">Perplexity Stock Pitch Competition</div>
+        <h3>Johnson &amp; Johnson Mispricing Thesis</h3>
+        <p>Researched J&amp;J's acquisition of Shockwave Medical and the growth of IVL technology, using AI-assisted research tools to accelerate data gathering while independently verifying findings against primary filings.</p>
+      </div>
+      <div class="proj">
+        <div class="stat">Quantitative Finance Club</div>
+        <h3>Systematic Strategy &amp; Options Research</h3>
+        <p>Developed Python-based trading strategies (NumPy, Pandas) with backtesting frameworks evaluating Sharpe ratio, volatility, and max drawdown. Built Black-Scholes option pricing models and analyzed Greeks under changing volatility and time decay.</p>
+      </div>
+      <div class="proj">
+        <div class="stat">Quantitative Finance Club</div>
+        <h3>Housing Market Regression Study</h3>
+        <p>Conducted a cross-sectional regression study on institutional ownership concentration in the U.S. single-family housing market, controlling for macroeconomic variables to isolate probabilistic price effects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">03</span><h2>Experience</h2></div>
+
+    <div class="entry">
+      <div class="date mono">Jun 2026 &ndash; Present</div>
+      <div>
+        <h3>Research Consultant</h3>
+        <div class="org">WorldQuant BRAIN, Remote</div>
+        <ul>
+          <li>Design and deploy systematic trading strategies (alphas) for a global quantitative asset manager.</li>
+          <li>Conduct statistical research to quantify risk-adjusted edge across signal performance, risk exposure, and portfolio diversification.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="date mono">Jun 2026 &ndash; Jul 2026</div>
+      <div>
+        <h3>Analyst</h3>
+        <div class="org">D+A Strategies, Remote</div>
+        <ul>
+          <li>Conducted quantitative research on financial markets and macroeconomic developments.</li>
+          <li>Analyzed financial datasets using Python and statistical techniques to evaluate investment hypotheses.</li>
+          <li>Developed and tested systematic research frameworks to assess market behavior and asset price dynamics.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="date mono">May 2026 &ndash; Jun 2026</div>
+      <div>
+        <h3>Trainee</h3>
+        <div class="org">D+A Strategies, Europe</div>
+        <ul>
+          <li>Analyzed macroeconomic developments and market trends to support investment research.</li>
+          <li>Participated in technical workshops and strategy discussions with finance and investment professionals.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="date mono">Aug 2025 &ndash; Present</div>
+      <div>
+        <h3>Financial Well-Being Ambassador</h3>
+        <div class="org">University of Nebraska-Lincoln, Lincoln, NE</div>
+        <ul>
+          <li>Build trust quickly under time pressure in sensitive financial conversations with students, using motivational interviewing technique.</li>
+          <li>Translate complex financial information into clear, actionable recommendations through a structured problem-solving approach.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="date mono">Aug 2025</div>
+      <div>
+        <h3>Investment Banking Summer Camp Internship</h3>
+        <div class="org">UOB Kay Hian, Bangkok, Thailand</div>
+        <ul>
+          <li>Studied corporate debentures, credit ratings, and risk assessment in capital markets.</li>
+          <li>Explored thematic investment strategies shaped by global megatrends, including portfolio diversification using Modern Portfolio Theory.</li>
+          <li>Gained institutional market exposure through field visits to the Stock Exchange of Thailand (SET) and Forestias Real Estate.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="leadership">
+  <div class="wrap">
+    <div class="section-head"><span class="tag">04</span><h2>Leadership &amp; Involvement</h2></div>
+
+    <div class="entry">
+      <div class="date mono">Jan 2026 &ndash; Present</div>
+      <div>
+        <h3>Founder &amp; Treasurer, Big Red Grappling Club</h3>
+        <div class="org">University of Nebraska-Lincoln</div>
+        <p>Founded a club providing a supportive environment for students to practice wrestling and grappling, with structured training sessions open to all experience levels.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="date mono">Jan 2025 &ndash; Present</div>
+      <div>
+        <h3>Member, Quantitative Finance Club</h3>
+        <div class="org">University of Nebraska-Lincoln</div>
+        <p>Weekly meetings spanning portfolio management presentations, interview preparation, and guest speaker lectures across financial mathematics, data science, and programming.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="date mono">Jan 2025 &ndash; Present</div>
+      <div>
+        <h3>Equity Research, Big Red Investment Club</h3>
+        <div class="org">University of Nebraska-Lincoln</div>
+        <p>Build DCF and relative valuation models, conduct competitive landscape analysis, and analyze 10-K/10-Q filings. Presented and defended a full investment thesis under live questioning from a panel including a CFA charterholder.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:10px;">
+    <div class="section-head" style="margin-top:26px; margin-bottom:20px;"><span class="tag">05</span><h2>Certifications</h2></div>
+    <div class="cert-row">
+      <div class="cert">
+        <div class="cdate">Jun 2026</div>
+        <h3>WorldQuant Certificate of Accomplishment</h3>
+        <p>Recognized for constructing statistically robust alpha factors across US equities in the WorldQuant Challenge.</p>
+      </div>
+      <div class="cert">
+        <div class="cdate">Nov 2025</div>
+        <h3>Bloomberg Market Concepts</h3>
+        <p>Foundational understanding of fixed income, equities, FX, and macroeconomic indicators, plus Bloomberg Terminal navigation.</p>
+      </div>
+      <div class="cert">
+        <div class="cdate">Jun 2026</div>
+        <h3>D+A Strategies Certificate</h3>
+        <p>Certificate of Completion covering backtesting and quantitative research methods.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:36px;">
+    <div class="skills-row">
+      <div class="pill">Python</div>
+      <div class="pill">Pandas</div>
+      <div class="pill">NumPy</div>
+      <div class="pill">Matplotlib</div>
+      <div class="pill">Regression Analysis</div>
+      <div class="pill">Options Pricing</div>
+      <div class="pill">Portfolio Theory</div>
+      <div class="pill">Risk Metrics</div>
+      <div class="pill">Backtesting</div>
+      <div class="pill">Probability &amp; Statistics</div>
+      <div class="pill">Excel</div>
+      <div class="pill">Bloomberg Terminal</div>
+      <div class="pill">DCF</div>
+      <div class="pill">Comparable Valuation</div>
+      <div class="pill">Financial Statement Analysis</div>
+      <div class="pill">Equity Research</div>
+      <div class="pill">Fixed Income</div>
+      <div class="pill">FX</div>
+      <div class="pill">Macroeconomic Analysis</div>
+    </div>
+  </div>
+</section>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="contact-links">
+      <a href="mailto:kiddeesatiraprapakul@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/kiddeesatiraprapakul" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <div class="fine">Lincoln, NE &middot; Updated July 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
