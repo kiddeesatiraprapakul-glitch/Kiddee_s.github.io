@@ -1,4 +1,4 @@
-r<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -72,10 +72,12 @@ r<!DOCTYPE html>
   .entry p{ font-size:15px; line-height:1.6; color:var(--ink-soft); margin:0; }
 
   .grid-projects{ display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); }
-  .proj{ background:var(--white); padding:24px; }
+  .proj{ background:var(--white); padding:24px; display:flex; flex-direction:column; }
   .proj .stat{ font-family:'IBM Plex Mono',monospace; font-size:15px; text-transform:uppercase; letter-spacing:.04em; color:var(--market-green); margin-bottom:8px; }
   .proj h3{ font-size:16px; margin-bottom:8px; }
   .proj p{ font-size:14px; line-height:1.6; color:var(--ink-soft); margin:0; }
+  .proj .paper-link{ margin-top:14px; font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.03em; text-decoration:none; color:var(--brass); border-bottom:1px solid var(--brass); padding-bottom:2px; align-self:flex-start; }
+  .proj .paper-link:hover{ color:var(--ink); border-color:var(--ink); }
 
   .cert-row{ display:grid; grid-template-columns:1fr 1fr 1fr; gap:1px; background:var(--rule); border:1px solid var(--rule); }
   .cert{ background:var(--white); padding:20px; }
@@ -155,21 +157,25 @@ r<!DOCTYPE html>
         <div class="stat">Big Red Investment Club</div>
         <h3>TransMedics Group (TMDX) Stock Pitch</h3>
         <p>Built a full investment thesis on TransMedics' organ transplant logistics platform, including a DCF, relative valuation framework, competitive moat analysis, and sensitivity scenarios around kidney platform expansion and international growth. Presented alongside teammates Nolan Chaloner and Tanner Languis.</p>
+        <a class="paper-link" href="papers/TMDX_Equity_Research_Report.pdf" target="_blank" rel="noopener">View Full Report &rarr;</a>
       </div>
       <div class="proj">
-        <div class="stat">Perplexity Stock Pitch Competition</div>
-        <h3>Johnson &amp; Johnson Mispricing Thesis</h3>
-        <p>Researched J&amp;J's acquisition of Shockwave Medical and the growth of IVL technology, using AI-assisted research tools to accelerate data gathering while independently verifying findings against primary filings.</p>
+        <div class="stat">Personal Project</div>
+        <h3>Institutional Ownership &amp; Home Price Growth</h3>
+        <p>Tested whether rising institutional ownership is associated with U.S. single family home price growth from 2001 to 2024, using an OLS regression against FRED macro data (fed funds rate, inflation, unemployment, GDP growth, and housing supply) with HC3 robust standard errors.</p>
+        <a class="paper-link" href="papers/Institutional_Ownership_Housing_Price_Growth.pdf" target="_blank" rel="noopener">View Full Paper &rarr;</a>
       </div>
       <div class="proj">
         <div class="stat">Personal Project</div>
         <h3>CPI Surprise Event Study</h3>
         <p>Analyzed how CPI surprise days move Treasury yields, the S&amp;P 500, and DXY, written up in academic paper format with full sourcing transparency.</p>
+        <a class="paper-link" href="papers/CPI_Surprise_Event_Study.pdf" target="_blank" rel="noopener">View Full Paper &rarr;</a>
       </div>
       <div class="proj">
         <div class="stat">Personal Project</div>
         <h3>Copper &ndash; China Lead-Lag Study</h3>
         <p>Replicated a copper-China industrial cycle correlation study using the FRED API, working through real data availability constraints in the underlying series.</p>
+        <a class="paper-link" href="papers/Copper_China_LeadLag_Study.pdf" target="_blank" rel="noopener">View Full Paper &rarr;</a>
       </div>
     </div>
   </div>
